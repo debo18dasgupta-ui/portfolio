@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Deboshree Dasgupta — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: #FFFFFF;
+  color: #1A1A1A;
+  width: 1440px;
+}
+a { text-decoration: none; color: inherit; }
+
+/* ── COLORS ── */
+/* rust: #C0502E | black: #0A0806 | cream: #F5F1EB | gold: #C89B3C */
+
+/* ── NAV ── */
+.nav {
+  width: 1440px;
+  height: 72px;
+  background: #0A0806;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+}
+.nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: #C0502E; }
+.nav-name { font-size: 14px; font-weight: 500; color: #FFFFFF; }
+.nav-role { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: #888474; }
+.nav-links { display: flex; gap: 40px; }
+.nav-links span { font-size: 13px; color: rgba(255,255,255,.5); }
+.nav-cta {
+  background: #1E1A16; border: 1px solid rgba(255,255,255,.15);
+  border-radius: 100px; padding: 10px 20px;
+  font-size: 12px; color: #FFFFFF; display: flex; align-items: center; gap: 8px;
+}
+.nav-cta-dot { width: 7px; height: 7px; border-radius: 50%; background: #E8000F; }
+
+/* ── HERO ── */
+.hero {
+  width: 1440px;
+  background: #0A0806;
+  padding: 80px 64px 80px 136px;
+}
+.hero-eyebrow { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: #C0502E; margin-bottom: 8px; }
+.hero-eyebrow-jp { font-family: 'Cormorant Garamond', serif; font-size: 14px; color: rgba(192,80,46,.7); display: block; margin-bottom: 16px; }
+.hero-name { font-family: 'Cormorant Garamond', serif; font-size: 96px; font-weight: 300; line-height: .9; color: #FFFFFF; letter-spacing: -.01em; }
+.hero-name .rust { color: #C0502E; }
+.hero-tagline { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; font-style: italic; color: rgba(255,255,255,.5); margin-top: 16px; }
+.hero-desc { font-size: 15px; font-weight: 300; color: rgba(255,255,255,.45); line-height: 1.8; max-width: 540px; margin-top: 20px; }
+.hero-actions { display: flex; gap: 24px; align-items: center; margin-top: 36px; }
+.btn-rust { background: #C0502E; color: #FFFFFF; padding: 14px 32px; border-radius: 100px; font-size: 13px; font-weight: 500; letter-spacing: .08em; }
+.btn-text { font-size: 13px; color: rgba(255,255,255,.5); border-bottom: 1px solid rgba(255,255,255,.2); padding-bottom: 2px; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid rgba(192,80,46,.4); border-radius: 100px;
+  padding: 6px 16px; margin-bottom: 28px;
+  font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: #C0502E;
+}
+
+/* ── DIVIDER ── */
+.divider { width: 1440px; height: 1px; background: rgba(255,255,255,.06); }
+.divider-light { width: 1440px; height: 1px; background: #E8E4DC; }
+
+/* ── STATS ── */
+.stats { width: 1440px; background: #141210; display: flex; }
+.stat { flex: 1; padding: 48px; border-right: 1px solid rgba(255,255,255,.06); }
+.stat:last-child { border-right: none; }
+.stat-num { font-family: 'Cormorant Garamond', serif; font-size: 72px; font-weight: 300; color: #FFFFFF; line-height: 1; }
+.stat-num span { color: #C0502E; }
+.stat-label { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.3); margin-top: 8px; }
+
+/* ── ABOUT ── */
+.about { width: 1440px; background: #141210; display: flex; }
+.about-left { width: 720px; padding: 80px 64px; border-right: 1px solid rgba(255,255,255,.06); }
+.about-right { width: 720px; padding: 80px 64px; background: #1E1A16; }
+.section-tag { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: #C0502E; margin-bottom: 16px; }
+.about-headline { font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 300; color: #FFFFFF; line-height: 1.2; }
+.about-body { font-size: 14px; font-weight: 300; color: rgba(255,255,255,.5); line-height: 1.9; margin-top: 24px; }
+.about-body p + p { margin-top: 14px; }
+.about-callouts { display: flex; gap: 1px; background: rgba(255,255,255,.06); margin-top: 40px; }
+.callout { flex: 1; background: #141210; padding: 20px 16px; }
+.callout-title { font-size: 12px; font-weight: 500; color: #FFFFFF; margin-bottom: 8px; }
+.callout-body { font-size: 11px; font-weight: 300; color: rgba(255,255,255,.4); line-height: 1.6; }
+.about-resume { margin-top: 32px; }
+.link-rust { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #C0502E; }
+.about-photo-placeholder { width: 100%; height: 400px; background: #2A1E14; display: flex; align-items: center; justify-content: center; }
+.about-photo-text { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-style: italic; color: rgba(255,255,255,.2); }
+
+/* ── WORK ── */
+.work { width: 1440px; background: #0A0806; }
+.work-header { padding: 80px 64px 48px; border-bottom: 1px solid rgba(255,255,255,.06); display: flex; justify-content: space-between; align-items: flex-end; }
+.work-headline { font-family: 'Cormorant Garamond', serif; font-size: 56px; font-weight: 300; color: #FFFFFF; line-height: 1.1; }
+.work-headline em { font-style: italic; color: #C0502E; }
+.work-intro { font-size: 14px; font-weight: 300; color: rgba(255,255,255,.4); max-width: 340px; line-height: 1.7; }
+.projects { display: flex; flex-wrap: wrap; }
+.project { width: 720px; min-height: 340px; padding: 40px; border-right: 1px solid rgba(255,255,255,.06); border-bottom: 1px solid rgba(255,255,255,.06); background: #141210; }
+.project:nth-child(even) { border-right: none; }
+.project-date { font-size: 10px; letter-spacing: .14em; color: rgba(255,255,255,.25); margin-bottom: 16px; }
+.project-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.project-tag { font-size: 9px; letter-spacing: .14em; text-transform: uppercase; border: 1px solid rgba(255,255,255,.15); border-radius: 100px; padding: 4px 12px; color: rgba(255,255,255,.4); }
+.project-name { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: #FFFFFF; margin-bottom: 12px; }
+.project-desc { font-size: 13px; font-weight: 300; color: rgba(255,255,255,.4); line-height: 1.7; max-width: 460px; }
+.project-arrow { display: inline-block; width: 36px; height: 36px; border-radius: 50%; background: #C0502E; color: #FFF; text-align: center; line-height: 36px; font-size: 16px; margin-top: 20px; }
+
+/* ── MARQUEE ── */
+.marquee { width: 1440px; background: #C0502E; padding: 16px 0; overflow: hidden; white-space: nowrap; }
+.marquee-inner { display: inline-block; }
+.marquee-item { display: inline-block; margin: 0 28px; font-family: 'Cormorant Garamond', serif; font-size: 16px; font-style: italic; color: rgba(255,255,255,.9); letter-spacing: .06em; }
+.marquee-sep { color: rgba(255,255,255,.35); }
+
+/* ── TESTIMONIALS ── */
+.testimonials { width: 1440px; background: #141210; padding: 80px 64px; }
+.testimonials-title { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 300; color: #FFFFFF; margin-top: 12px; }
+.t-grid { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 48px; }
+.t-card { background: #1E1A16; border: 1px solid rgba(255,255,255,.06); padding: 28px; width: 440px; }
+.t-card.featured { background: #C0502E; width: 440px; }
+.t-card.wide { width: 905px; background: #1a2a3a; }
+.t-quote { font-size: 24px; color: #C0502E; font-weight: 700; margin-bottom: 14px; }
+.t-card.featured .t-quote { color: rgba(255,255,255,.4); }
+.t-text { font-size: 13px; font-weight: 300; color: rgba(255,255,255,.7); line-height: 1.8; }
+.t-card.featured .t-text { font-size: 16px; color: #FFFFFF; font-weight: 400; }
+.t-name { font-size: 12px; font-weight: 500; color: #FFFFFF; margin-top: 20px; }
+.t-role { font-size: 11px; color: rgba(255,255,255,.4); margin-top: 3px; }
+
+/* ── SKILLS ── */
+.skills { width: 1440px; background: #0A0806; padding: 80px 64px; }
+.skills-title { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 300; color: #FFFFFF; margin-top: 12px; }
+.skills-title em { font-style: italic; color: rgba(255,255,255,.3); }
+.skills-sub { font-size: 14px; font-weight: 300; color: rgba(255,255,255,.35); max-width: 560px; margin-top: 12px; line-height: 1.7; }
+.skills-grid { display: flex; flex-wrap: wrap; gap: 2px; margin-top: 48px; background: rgba(255,255,255,.04); }
+.skill { width: 470px; background: #141210; padding: 32px 28px; }
+.skill-icon { font-size: 22px; margin-bottom: 16px; }
+.skill-name { font-size: 16px; font-weight: 500; color: #FFFFFF; margin-bottom: 10px; }
+.skill-desc { font-size: 13px; font-weight: 300; color: rgba(255,255,255,.4); line-height: 1.7; }
+
+/* ── TOOLS ── */
+.tools { width: 1440px; background: #141210; padding: 32px 64px; border-top: 1px solid rgba(255,255,255,.06); }
+.tools-label { font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.25); margin-bottom: 16px; }
+.tools-list { display: flex; gap: 10px; flex-wrap: wrap; }
+.tool { background: #1E1A16; border: 1px solid rgba(255,255,255,.08); border-radius: 100px; padding: 9px 18px; font-size: 12px; color: rgba(255,255,255,.6); display: flex; align-items: center; gap: 8px; }
+.tool-dot { width: 6px; height: 6px; border-radius: 50%; background: #C0502E; }
+
+/* ── CONTACT ── */
+.contact { width: 1440px; background: #0A0806; padding: 100px 64px; text-align: center; }
+.contact-tag { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(192,80,46,.35); border-radius: 100px; padding: 6px 18px; font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: #C0502E; margin-bottom: 32px; }
+.contact-headline { font-family: 'Cormorant Garamond', serif; font-size: 64px; font-weight: 300; color: #FFFFFF; line-height: 1.1; }
+.contact-headline em { font-style: italic; color: #C0502E; }
+.contact-desc { font-size: 15px; font-weight: 300; color: rgba(255,255,255,.4); max-width: 480px; margin: 24px auto 0; line-height: 1.8; }
+.contact-actions { display: flex; justify-content: center; gap: 24px; margin-top: 40px; }
+.contact-bar { display: flex; border-top: 1px solid rgba(255,255,255,.06); margin-top: 64px; padding-top: 40px; }
+.contact-col { flex: 1; padding: 0 40px; border-right: 1px solid rgba(255,255,255,.06); }
+.contact-col:first-child { padding-left: 0; }
+.contact-col:last-child { border-right: none; }
+.contact-col-label { font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.25); margin-bottom: 8px; }
+.contact-col-val { font-size: 14px; font-weight: 300; color: rgba(255,255,255,.7); }
+
+/* ── FOOTER ── */
+.footer { width: 1440px; background: #141210; padding: 48px 64px 24px; }
+.footer-top { display: flex; gap: 80px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,.06); }
+.footer-brand { max-width: 300px; }
+.footer-brand-name { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 300; color: #FFFFFF; }
+.footer-brand-desc { font-size: 13px; font-weight: 300; color: rgba(255,255,255,.3); line-height: 1.7; margin-top: 10px; }
+.footer-col-title { font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.25); margin-bottom: 14px; }
+.footer-link { display: block; font-size: 13px; font-weight: 300; color: rgba(255,255,255,.5); margin-bottom: 8px; }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 24px; }
+.footer-copy { font-size: 11px; color: rgba(255,255,255,.2); }
+.footer-made { font-size: 11px; color: rgba(255,255,255,.2); }
+.footer-made span { color: #C0502E; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav">
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div style="width:36px;height:36px;background:#1E1A16;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;color:#C0502E;font-family:'Cormorant Garamond',serif;">DD.</div>
+    <div>
+      <div class="nav-name">Deboshree Dasgupta</div>
+      <div class="nav-role">Product Designer</div>
+    </div>
+  </div>
+  <div class="nav-links">
+    <span>Work</span>
+    <span>Skills</span>
+    <span>About</span>
+  </div>
+  <div class="nav-cta"><span class="nav-cta-dot"></span> Open to work</div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge"><span class="nav-cta-dot"></span> Open to Opportunities · 2026</div>
+  <div class="hero-eyebrow-jp">ユーザー体験のデザイナー</div>
+  <div class="hero-name">DEBOSHREE<br/><span class="rust">DAS</span>GUPTA</div>
+  <div class="hero-tagline">a product designer finding my craft</div>
+  <div class="hero-desc">I just wrapped up a year-long design internship where I worked alongside senior designers on real products — building components, running usability tests, prepping assets, and learning what it actually takes to ship good work. Before this, I taught myself design from scratch. Now I'm looking for my next team.</div>
+  <div class="hero-actions">
+    <div class="btn-rust">See my work ↗</div>
+    <div class="btn-text">Or get in touch →</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-num">1<span> year</span></div>
+    <div class="stat-label">Design Internship</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">4</div>
+    <div class="stat-label">Projects Shipped</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">40<span>+</span></div>
+    <div class="stat-label">Components Built</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<div class="about">
+  <div class="about-left">
+    <div class="section-tag">/ About Me</div>
+    <div class="about-headline">I taught myself design from scratch — then spent a year learning from people who actually ship.</div>
+    <div class="about-body">
+      <p>A year ago, I couldn't tell you the difference between auto-layout and absolute positioning. Today, I've built 40+ documented components, run 8 usability testing sessions, and sat shoulder-to-shoulder with engineers shipping production code.</p>
+      <p>My internship wasn't about fetching coffee. I prepped design files for handoff, built interactive prototypes for stakeholder reviews, audited screens for accessibility, and learned how to take feedback without taking it personally.</p>
+      <p>I worked in Japanese-speaking teams — I picked up the language along the way, and while I'm far from native, it taught me to communicate design across language barriers. Right now I'm looking for a junior product design role where I can keep growing.</p>
+    </div>
+    <div class="about-callouts">
+      <div class="callout">
+        <div class="callout-title">Self-taught foundation</div>
+        <div class="callout-body">Learned design through online courses, tutorials, and a lot of late nights in Figma.</div>
+      </div>
+      <div class="callout">
+        <div class="callout-title">Real-world reps</div>
+        <div class="callout-body">One year working inside a product team. Not hypothetical projects — real users, real feedback.</div>
+      </div>
+      <div class="callout">
+        <div class="callout-title">Japanese working proficiency</div>
+        <div class="callout-body">Can collaborate comfortably in Japanese-speaking teams. Not native, but functional.</div>
+      </div>
+    </div>
+    <div class="about-resume" style="margin-top:32px;">
+      <span class="link-rust">Download Resume →</span>
+    </div>
+  </div>
+  <div class="about-right">
+    <div class="about-photo-placeholder">
+      <span class="about-photo-text">[ Your photo here ]</span>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- WORK -->
+<div class="work">
+  <div class="work-header">
+    <div>
+      <div class="section-tag">/ Selected Case Studies — 04</div>
+      <div class="work-headline">Four projects,<br/><em>one internship:</em> what I built &amp; learned.</div>
+    </div>
+    <div class="work-intro">These aren't hypothetical portfolio pieces — they're real work I shipped (or helped ship) during my internship. Each one taught me something I couldn't have learned from a tutorial.</div>
+  </div>
+  <div class="projects">
+    <div class="project">
+      <div class="project-date">01 · 2025</div>
+      <div class="project-tags">
+        <span class="project-tag">Design System</span>
+        <span class="project-tag">Figma</span>
+        <span class="project-tag">Internship</span>
+      </div>
+      <div class="project-name">Component Library</div>
+      <div class="project-desc">Supporting the build-out of a design system — buttons, inputs, modals, and a whole lot of auto-layout</div>
+      <div class="project-arrow">→</div>
+    </div>
+    <div class="project">
+      <div class="project-date">02 · 2025</div>
+      <div class="project-tags">
+        <span class="project-tag">Internship Project</span>
+        <span class="project-tag">UX Design</span>
+      </div>
+      <div class="project-name">Onboarding Flow</div>
+      <div class="project-desc">Redesigning the user onboarding experience to reduce drop-off and improve first-session activation</div>
+      <div class="project-arrow">→</div>
+    </div>
+    <div class="project">
+      <div class="project-date">03 · 2024</div>
+      <div class="project-tags">
+        <span class="project-tag">UI Design</span>
+        <span class="project-tag">B2B</span>
+      </div>
+      <div class="project-name">Dashboard Widgets</div>
+      <div class="project-desc">Designing and prototyping a set of data widgets for a B2B analytics dashboard</div>
+      <div class="project-arrow">→</div>
+    </div>
+    <div class="project">
+      <div class="project-date">04 · 2024</div>
+      <div class="project-tags">
+        <span class="project-tag">Accessibility</span>
+        <span class="project-tag">Audit</span>
+      </div>
+      <div class="project-name">Accessibility Audit</div>
+      <div class="project-desc">Running contrast checks, focus states, and screen-reader tests across the product</div>
+      <div class="project-arrow">→</div>
+    </div>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-inner">
+    <span class="marquee-item">シンプルさは、究極の洗練である。</span> <span class="marquee-sep">·</span>
+    <span class="marquee-item">Simplicity is the ultimate sophistication.</span> <span class="marquee-sep">·</span>
+    <span class="marquee-item">UX Design</span> <span class="marquee-sep">·</span>
+    <span class="marquee-item">人を惹きつける体験を、デザインする。</span> <span class="marquee-sep">·</span>
+    <span class="marquee-item">Localization</span> <span class="marquee-sep">·</span>
+    <span class="marquee-item">Japanese Working Proficiency</span> <span class="marquee-sep">·</span>
+    <span class="marquee-item">Atlanta, GA · Open to Relocation</span>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="testimonials">
+  <div class="section-tag">/ Kind Words</div>
+  <div class="testimonials-title">People I've learned from.</div>
+  <div class="t-grid">
+    <div class="t-card featured">
+      <div class="t-quote">"</div>
+      <div class="t-text">Most designers hand off and disappear. Deboshree sat with me during implementation, tweaked spacing in real-time, and actually cared whether what shipped matched what she designed. That's rare.</div>
+      <div class="t-name">Raj Patel</div>
+      <div class="t-role">Frontend Engineer — sprint collaborator</div>
+    </div>
+    <div class="t-card">
+      <div class="t-quote">"</div>
+      <div class="t-text">Deboshree didn't just take notes and prep assets — she asked why every decision was made. That kind of curiosity is rare in an intern. By month three, I trusted her to run usability sessions on her own.</div>
+      <div class="t-name">Clara Mendes</div>
+      <div class="t-role">Senior Product Designer — internship mentor</div>
+    </div>
+    <div class="t-card">
+      <div class="t-quote">"</div>
+      <div class="t-text">She turned our chaotic Figma file into something the whole team could actually use. Her component documentation was cleaner than what I've seen from designers with three years of experience.</div>
+      <div class="t-name">James Okonkwo</div>
+      <div class="t-role">Design Lead — internship supervisor</div>
+    </div>
+    <div class="t-card wide">
+      <div class="t-quote">"</div>
+      <div class="t-text">I gave Deboshree a fairly vague brief for the dashboard widgets and she came back with six fully-prototyped options — with edge cases I hadn't even thought of. She thinks like a PM as much as a designer.</div>
+      <div class="t-name">Yuki Tanaka</div>
+      <div class="t-role">Product Manager — project collaborator</div>
+    </div>
+    <div class="t-card">
+      <div class="t-quote">"</div>
+      <div class="t-text">We've had six design interns in two years. Deboshree is the only one I'd hire without hesitation. Her accessibility audit alone showed more initiative than most candidates bring to a full interview loop.</div>
+      <div class="t-name">Nina Bergström</div>
+      <div class="t-role">Head of Design — internship host</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<div class="skills">
+  <div class="section-tag">/ What I've Learned</div>
+  <div class="skills-title">Skills picked up<br/><em>during a year of real work.</em></div>
+  <div class="skills-sub">Here's what a year of shipping, collaborating, and occasionally messing up taught me. Not claiming mastery — just honest, hands-on experience.</div>
+  <div class="skills-grid">
+    <div class="skill">
+      <div class="skill-icon">🔍</div>
+      <div class="skill-name">User Research</div>
+      <div class="skill-desc">Ran usability tests, synthesized interview notes into actionable insights, and helped prepare research decks for stakeholder presentations.</div>
+    </div>
+    <div class="skill">
+      <div class="skill-icon">⬜</div>
+      <div class="skill-name">Wireframing & Prototyping</div>
+      <div class="skill-desc">Created low-fidelity wireframes and interactive prototypes in Figma — from paper sketches to clickable flows for user testing sessions.</div>
+    </div>
+    <div class="skill">
+      <div class="skill-icon">◈</div>
+      <div class="skill-name">Design Systems</div>
+      <div class="skill-desc">Built and documented reusable components with auto-layout and variants. Learned how token-based theming works and why consistency matters at scale.</div>
+    </div>
+    <div class="skill">
+      <div class="skill-icon">🎨</div>
+      <div class="skill-name">Visual & UI Design</div>
+      <div class="skill-desc">Translated wireframes into polished high-fidelity screens. Paid attention to typography, spacing, color, and the details that make an interface feel intentional.</div>
+    </div>
+    <div class="skill">
+      <div class="skill-icon">👥</div>
+      <div class="skill-name">Cross-functional Collaboration</div>
+      <div class="skill-desc">Sat in sprint planning, worked alongside engineers during implementation, and learned how to communicate design decisions to PMs and stakeholders.</div>
+    </div>
+    <div class="skill">
+      <div class="skill-icon">⊕</div>
+      <div class="skill-name">Accessibility Awareness</div>
+      <div class="skill-desc">Audited interfaces for WCAG compliance, flagged contrast and focus-state issues, and learned why designing for everyone isn't optional — it's the baseline.</div>
+    </div>
+  </div>
+</div>
+
+<!-- TOOLS -->
+<div class="tools">
+  <div class="tools-label">/ Tools I Use</div>
+  <div class="tools-list">
+    <div class="tool"><span class="tool-dot"></span>Figma · Advanced</div>
+    <div class="tool"><span class="tool-dot"></span>Framer · Learning</div>
+    <div class="tool"><span class="tool-dot"></span>Notion · Daily driver</div>
+    <div class="tool"><span class="tool-dot"></span>Maze · Usability testing</div>
+    <div class="tool"><span class="tool-dot"></span>Whimsical · Wireframes</div>
+    <div class="tool"><span class="tool-dot"></span>Linear · Project tracking</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<div class="contact">
+  <div class="contact-tag"><span class="nav-cta-dot"></span> Let's work together</div>
+  <div class="contact-headline">Looking for a team<br/><em>that values craft and curiosity.</em></div>
+  <div class="contact-desc">I'm actively looking for a junior product design role. If your team needs someone who ships carefully, takes feedback well, and genuinely cares about the details — let's talk.</div>
+  <div class="contact-actions">
+    <div class="btn-rust">✉ Say Hello</div>
+    <div class="btn-text">Download my resume →</div>
+  </div>
+  <div class="contact-bar">
+    <div class="contact-col">
+      <div class="contact-col-label">Email</div>
+      <div class="contact-col-val">hello@deboshree.design</div>
+    </div>
+    <div class="contact-col">
+      <div class="contact-col-label">Location</div>
+      <div class="contact-col-val">Atlanta, GA · Open to remote & relocation</div>
+    </div>
+    <div class="contact-col">
+      <div class="contact-col-label">Availability</div>
+      <div class="contact-col-val">Immediate</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-brand-name">Deboshree Dasgupta</div>
+      <div class="footer-brand-desc">Product designer. One year in, a whole career ahead. Actively looking for a junior product design role — remote-friendly, relocation-possible.</div>
+    </div>
+    <div>
+      <div class="footer-col-title">Work</div>
+      <div class="footer-link">Case studies</div>
+      <div class="footer-link">Side projects</div>
+      <div class="footer-link">Resume (PDF)</div>
+    </div>
+    <div>
+      <div class="footer-col-title">About</div>
+      <div class="footer-link">My story</div>
+      <div class="footer-link">Skills & tools</div>
+      <div class="footer-link">Contact</div>
+    </div>
+    <div>
+      <div class="footer-col-title">Elsewhere</div>
+      <div class="footer-link">LinkedIn</div>
+      <div class="footer-link">Read.cv</div>
+      <div class="footer-link">Dribbble</div>
+      <div class="footer-link">GitHub</div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Deboshree Dasgupta</span>
+    <span class="footer-made">Set in Cormorant & Inter · <span>Built with care, not a template</span></span>
+  </div>
+</div>
+
+</body>
+</html>
