@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Deboshree Dasgupta — UX Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Shippori+Mincho:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --rust:#C0502E;--rust2:#E8000F;--gold:#C89B3C;
+  --black:#0A0806;--dark:#141210;--dark2:#1E1A16;
+  --cream:#F5F1EB;--cream2:#EDE8DF;
+  --white:#FFFFFF;--mid:#888474;--light:#B8B4A8;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:20px 48px;
+  background:rgba(10,8,6,0.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.nav-logo{display:flex;align-items:center;gap:12px}
+.nav-logo-mark{
+  width:36px;height:36px;background:var(--dark2);
+  border-radius:6px;display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;font-size:16px;color:var(--rust);letter-spacing:.06em;
+}
+.nav-logo-text{display:flex;flex-direction:column;gap:1px}
+.nav-name{font-size:13px;font-weight:500;color:var(--white);letter-spacing:.02em}
+.nav-role{font-size:9px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--mid)}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{font-size:12px;font-weight:400;letter-spacing:.12em;color:rgba(255,255,255,.5);transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{
+  display:flex;align-items:center;gap:8px;
+  background:var(--dark2);border:1px solid rgba(255,255,255,.12);
+  border-radius:100px;padding:9px 18px;
+  font-size:11px;font-weight:500;letter-spacing:.1em;color:var(--white);
+  transition:border-color .2s;
+}
+.nav-cta-dot{width:7px;height:7px;border-radius:50%;background:var(--rust2);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:1;transform:scale(1.2)}}
+.nav-cta:hover{border-color:var(--rust)}
+
+/* ── HERO ── */
+.hero{
+  position:relative;min-height:100vh;
+  display:grid;grid-template-columns:72px 1fr;
+  padding-top:80px;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background:linear-gradient(135deg,#0A0806 0%,#1A0E08 40%,#0D0A06 100%);
+}
+/* Neon city simulation with CSS */
+.hero-bg::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 50% at 75% 40%,rgba(192,80,46,0.18) 0%,transparent 70%),
+    radial-gradient(ellipse 40% 60% at 85% 70%,rgba(200,155,60,0.1) 0%,transparent 60%),
+    radial-gradient(ellipse 30% 40% at 60% 20%,rgba(232,0,15,0.08) 0%,transparent 50%);
+}
+.hero-sidebar{
+  position:relative;z-index:2;
+  display:flex;flex-direction:column;align-items:center;
+  justify-content:space-between;padding:40px 0 40px;
+  border-right:1px solid rgba(255,255,255,.06);
+}
+.hero-sidebar-logo{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--rust);letter-spacing:.06em}
+.hero-sidebar-nav{display:flex;flex-direction:column;gap:20px;align-items:center}
+.hs-nav-item{display:flex;flex-direction:column;align-items:center;gap:4px}
+.hs-num{font-size:8px;color:var(--rust);letter-spacing:.1em}
+.hs-label{font-size:7px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.3);writing-mode:vertical-rl;transform:rotate(180deg)}
+.hs-label.active{color:rgba(255,255,255,.8)}
+.hero-sidebar-jp{font-family:'Shippori Mincho',serif;font-size:11px;color:rgba(192,80,46,.4);writing-mode:vertical-rl;letter-spacing:.2em}
+
+.hero-content{
+  position:relative;z-index:2;
+  padding:48px 64px 64px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  min-height:calc(100vh - 80px);
+}
+.hero-eyebrow{
+  font-size:10px;font-weight:400;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--rust);margin-bottom:24px;
+}
+.hero-eyebrow-jp{
+  display:block;font-family:'Shippori Mincho',serif;
+  font-size:13px;color:rgba(192,80,46,.6);letter-spacing:.15em;margin-bottom:4px;
+}
+.hero-name{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(64px,9vw,120px);
+  line-height:.88;letter-spacing:.03em;color:var(--white);
+}
+.hero-name .rust{color:var(--rust)}
+.hero-tagline{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(18px,2.2vw,26px);
+  font-weight:300;font-style:italic;
+  color:rgba(255,255,255,.5);margin-top:16px;letter-spacing:.02em;
+}
+.hero-desc{
+  font-size:14px;font-weight:300;color:rgba(255,255,255,.45);
+  line-height:1.8;max-width:480px;margin-top:20px;
+}
+.hero-actions{display:flex;align-items:center;gap:20px;margin-top:36px}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--rust);color:var(--white);
+  padding:14px 28px;border-radius:100px;
+  font-size:12px;font-weight:500;letter-spacing:.1em;
+  transition:background .2s;
+}
+.btn-primary:hover{background:#a84426}
+.btn-primary .icon{
+  width:24px;height:24px;border-radius:50%;
+  background:rgba(255,255,255,.2);
+  display:flex;align-items:center;justify-content:center;font-size:12px;
+}
+.btn-ghost-link{
+  font-size:12px;font-weight:400;letter-spacing:.08em;
+  color:rgba(255,255,255,.5);border-bottom:1px solid rgba(255,255,255,.15);
+  padding-bottom:2px;transition:color .2s,border-color .2s;
+}
+.btn-ghost-link:hover{color:var(--white);border-color:rgba(255,255,255,.5)}
+.hero-scroll{
+  display:flex;align-items:center;gap:10px;margin-top:auto;padding-top:40px;
+  font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.25);
+}
+.hero-scroll-line{width:1px;height:32px;background:var(--rust);opacity:.5;animation:scrollPulse 2.4s ease-in-out infinite}
+@keyframes scrollPulse{0%,100%{opacity:.3;transform:scaleY(1)}50%{opacity:.8;transform:scaleY(1.2)}}
+
+/* ── STATS ── */
+.stats{
+  background:var(--dark);
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border-top:1px solid rgba(255,255,255,.06);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.stat-item{
+  padding:40px 48px;border-right:1px solid rgba(255,255,255,.06);
+  display:flex;flex-direction:column;gap:6px;
+}
+.stat-item:last-child{border-right:none}
+.stat-num{
+  font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,6vw,80px);
+  color:var(--white);line-height:1;letter-spacing:.02em;
+}
+.stat-num span{color:var(--rust)}
+.stat-label{font-size:9px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.35)}
+
+/* ── SECTION HEADERS ── */
+.section-tag{
+  font-size:9px;font-weight:500;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--rust);
+  display:flex;align-items:center;gap:10px;margin-bottom:16px;
+}
+.section-tag::before{content:'·';font-size:14px}
+
+/* ── ABOUT ── */
+.about{
+  display:grid;grid-template-columns:1fr 1fr;
+  min-height:80vh;
+}
+.about-left{
+  padding:80px 64px;
+  background:var(--dark);
+  display:flex;flex-direction:column;justify-content:space-between;
+  border-right:1px solid rgba(255,255,255,.06);
+}
+.about-headline{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(28px,3.2vw,44px);font-weight:300;
+  color:var(--white);line-height:1.2;margin-top:16px;
+}
+.about-body{
+  font-size:14px;font-weight:300;color:rgba(255,255,255,.5);
+  line-height:1.9;margin-top:24px;
+}
+.about-body p+p{margin-top:16px}
+.about-callouts{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:rgba(255,255,255,.06);
+  margin-top:40px;
+}
+.callout{
+  background:var(--dark);padding:20px 16px;
+}
+.callout-title{font-size:11px;font-weight:500;color:var(--white);letter-spacing:.04em;margin-bottom:8px}
+.callout-body{font-size:11px;font-weight:300;color:rgba(255,255,255,.4);line-height:1.6}
+.about-right{
+  position:relative;overflow:hidden;background:var(--dark2);
+}
+.about-right-img{
+  width:100%;height:100%;
+  background:linear-gradient(160deg,#2A1A0E 0%,#1A0E08 50%,#0A0604 100%);
+  position:relative;overflow:hidden;
+}
+.about-right-img svg{position:absolute;inset:0;width:100%;height:100%}
+.about-resume{margin-top:32px}
+.arrow-link{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:10px;font-weight:500;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--rust);
+  border-bottom:1px solid transparent;
+  transition:border-color .2s,gap .2s;padding-bottom:2px;
+}
+.arrow-link:hover{border-color:var(--rust);gap:14px}
+
+/* ── WORK ── */
+.work{padding:80px 0;background:var(--black)}
+.work-header{padding:0 64px 48px;border-bottom:1px solid rgba(255,255,255,.06)}
+.work-title-row{display:flex;justify-content:space-between;align-items:flex-end;margin-top:12px}
+.work-headline{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(32px,5vw,64px);color:var(--white);letter-spacing:.03em;line-height:1;
+}
+.work-intro{font-size:13px;font-weight:300;color:rgba(255,255,255,.4);max-width:360px;line-height:1.7}
+.projects-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:2px;margin-top:2px;background:rgba(255,255,255,.04);
+}
+.project-card{
+  position:relative;overflow:hidden;
+  background:var(--dark);min-height:360px;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:32px;cursor:pointer;
+  transition:background .3s;
+}
+.project-card:hover{background:#1E1810}
+.project-card-bg{
+  position:absolute;inset:0;opacity:.18;
+  transition:opacity .3s;
+}
+.project-card:hover .project-card-bg{opacity:.28}
+.project-card-bg.blue{background:linear-gradient(135deg,#1a2a4a,#0d1525)}
+.project-card-bg.rust{background:linear-gradient(135deg,#3a1a0a,#1a0a04)}
+.project-card-bg.slate{background:linear-gradient(135deg,#1a2030,#0d1018)}
+.project-card-bg.dark{background:linear-gradient(135deg,#1a1510,#0d0a06)}
+.project-date{font-size:9px;letter-spacing:.14em;color:rgba(255,255,255,.25);margin-bottom:12px;display:flex;align-items:center;gap:12px}
+.project-date-line{width:24px;height:1px;background:rgba(255,255,255,.2)}
+.project-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.project-tag{
+  font-size:8px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+  border:1px solid rgba(255,255,255,.15);border-radius:100px;
+  padding:4px 10px;color:rgba(255,255,255,.4);
+}
+.project-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(24px,2.8vw,36px);font-weight:300;
+  color:var(--white);line-height:1;margin-bottom:10px;
+}
+.project-desc{font-size:12px;font-weight:300;color:rgba(255,255,255,.4);line-height:1.6;max-width:400px}
+.project-arrow{
+  position:absolute;bottom:32px;right:32px;
+  width:36px;height:36px;border-radius:50%;
+  background:var(--rust);display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:14px;
+  opacity:0;transform:translateX(-8px);
+  transition:opacity .25s,transform .25s;
+}
+.project-card:hover .project-arrow{opacity:1;transform:translateX(0)}
+.project-card-mock{
+  position:absolute;top:24px;right:24px;
+  width:140px;opacity:.2;transition:opacity .3s;
+}
+.project-card:hover .project-card-mock{opacity:.35}
+
+/* ── MARQUEE ── */
+.marquee{background:var(--rust);padding:14px 0;overflow:hidden;white-space:nowrap}
+.marquee-track{display:inline-block;animation:marquee 18s linear infinite}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marquee-item{
+  display:inline-block;margin:0 28px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:15px;font-weight:300;font-style:italic;
+  color:rgba(255,255,255,.9);letter-spacing:.06em;
+}
+.marquee-sep{color:rgba(255,255,255,.35);margin:0 6px}
+
+/* ── TESTIMONIALS ── */
+.testimonials{padding:80px 64px;background:var(--dark)}
+.testimonials-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:16px;margin-top:48px;
+}
+.testimonial-card{
+  background:var(--dark2);border:1px solid rgba(255,255,255,.06);
+  border-radius:2px;padding:28px;
+}
+.testimonial-card.featured{
+  grid-column:1;grid-row:1/3;
+  background:var(--rust);
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.testimonial-card.blue{background:#1a2a3a;border-color:rgba(255,255,255,.06)}
+.t-quote{
+  font-size:22px;color:var(--rust);font-weight:700;
+  letter-spacing:.1em;margin-bottom:16px;line-height:1;
+}
+.testimonial-card.featured .t-quote{color:rgba(255,255,255,.4)}
+.t-text{
+  font-size:13px;font-weight:300;line-height:1.8;
+  color:rgba(255,255,255,.7);
+}
+.testimonial-card.featured .t-text{font-size:16px;color:var(--white);font-weight:400}
+.t-person{margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1)}
+.t-person-row{display:flex;align-items:center;gap:12px}
+.t-avatar{
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(255,255,255,.1);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:500;color:var(--white);
+  flex-shrink:0;
+}
+.t-name{font-size:11px;font-weight:500;color:var(--white);letter-spacing:.04em}
+.t-role{font-size:10px;font-weight:300;color:rgba(255,255,255,.4);margin-top:2px}
+
+/* ── SKILLS ── */
+.skills{padding:80px 64px;background:var(--black)}
+.skills-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:2px;background:rgba(255,255,255,.04);
+  margin-top:48px;
+}
+.skill-card{
+  background:var(--dark);padding:32px 28px;
+  transition:background .2s;
+}
+.skill-card:hover{background:var(--dark2)}
+.skill-icon{
+  width:40px;height:40px;background:rgba(192,80,46,.12);
+  border-radius:8px;display:flex;align-items:center;justify-content:center;
+  font-size:18px;margin-bottom:20px;
+}
+.skill-name{font-size:15px;font-weight:500;color:var(--white);letter-spacing:.02em;margin-bottom:10px}
+.skill-desc{font-size:12px;font-weight:300;color:rgba(255,255,255,.4);line-height:1.7}
+
+/* ── TOOLS ── */
+.tools{
+  padding:32px 64px;
+  background:var(--dark);
+  border-top:1px solid rgba(255,255,255,.06);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.tools-label{
+  font-size:9px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(255,255,255,.25);margin-bottom:16px;
+}
+.tools-list{display:flex;gap:10px;flex-wrap:wrap}
+.tool-pill{
+  display:flex;align-items:center;gap:7px;
+  background:var(--dark2);border:1px solid rgba(255,255,255,.08);
+  border-radius:100px;padding:8px 16px;
+  font-size:11px;font-weight:400;color:rgba(255,255,255,.6);
+  letter-spacing:.04em;
+}
+.tool-dot{width:6px;height:6px;border-radius:50%;background:var(--rust);opacity:.7}
+
+/* ── CONTACT ── */
+.contact{
+  position:relative;min-height:80vh;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  overflow:hidden;
+}
+.contact-bg{
+  position:absolute;inset:0;
+  background:linear-gradient(160deg,#1A0E08 0%,#0D0806 40%,#050402 100%);
+}
+.contact-bg::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 60%,rgba(192,80,46,0.12) 0%,transparent 70%),
+    radial-gradient(ellipse 40% 40% at 30% 30%,rgba(200,155,60,0.06) 0%,transparent 60%);
+}
+.contact-content{
+  position:relative;z-index:2;
+  padding:80px 64px;
+  text-align:center;
+}
+.contact-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid rgba(192,80,46,.3);border-radius:100px;
+  padding:6px 16px;
+  font-size:9px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--rust);margin-bottom:32px;
+}
+.contact-headline{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(36px,5vw,72px);font-weight:300;
+  color:var(--white);line-height:1.1;letter-spacing:.01em;max-width:700px;margin:0 auto;
+}
+.contact-headline em{font-style:italic;color:var(--rust)}
+.contact-desc{
+  font-size:14px;font-weight:300;color:rgba(255,255,255,.45);
+  line-height:1.8;max-width:440px;margin:24px auto 0;
+}
+.contact-actions{display:flex;justify-content:center;align-items:center;gap:20px;margin-top:40px}
+.contact-bar{
+  position:relative;z-index:2;
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border-top:1px solid rgba(255,255,255,.06);
+  padding:28px 64px;background:rgba(0,0,0,.3);
+}
+.contact-col{display:flex;flex-direction:column;gap:6px;border-right:1px solid rgba(255,255,255,.06);padding:0 32px}
+.contact-col:first-child{padding-left:0}
+.contact-col:last-child{border-right:none}
+.contact-col-label{font-size:9px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.25)}
+.contact-col-val{font-size:13px;font-weight:300;color:rgba(255,255,255,.7);letter-spacing:.04em}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--dark);
+  border-top:1px solid rgba(255,255,255,.06);
+}
+.footer-top{
+  display:grid;grid-template-columns:1fr repeat(3,auto);
+  gap:64px;padding:48px 64px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  align-items:start;
+}
+.footer-brand-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--white);margin-bottom:6px}
+.footer-brand-desc{font-size:12px;font-weight:300;color:rgba(255,255,255,.35);line-height:1.7;max-width:280px;margin-top:10px}
+.footer-col-title{font-size:9px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:14px}
+.footer-link{display:block;font-size:12px;font-weight:300;color:rgba(255,255,255,.5);letter-spacing:.04em;margin-bottom:8px;transition:color .2s}
+.footer-link:hover{color:var(--rust)}
+.footer-bottom{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:20px 64px;
+}
+.footer-copy{font-size:11px;font-weight:300;color:rgba(255,255,255,.2);letter-spacing:.06em}
+.footer-made{font-size:11px;font-weight:300;color:rgba(255,255,255,.2);letter-spacing:.06em}
+.footer-made span{color:var(--rust)}
+.footer-socials{display:flex;gap:12px}
+.footer-social{
+  width:32px;height:32px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.1);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;color:rgba(255,255,255,.35);
+  transition:border-color .2s,color .2s;
+}
+.footer-social:hover{border-color:var(--rust);color:var(--rust)}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+
+/* ── JAPANESE ACCENT TEXT ── */
+.jp-watermark{
+  position:absolute;right:32px;top:50%;
+  transform:translateY(-50%);
+  font-family:'Shippori Mincho',serif;
+  font-size:clamp(48px,6vw,80px);font-weight:700;
+  color:rgba(192,80,46,.08);letter-spacing:.1em;
+  writing-mode:vertical-rl;pointer-events:none;z-index:1;
+  line-height:1;
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-mark">DD.</div>
+    <div class="nav-logo-text">
+      <span class="nav-name">Deboshree Dasgupta</span>
+      <span class="nav-role">Product Designer</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">
+    <span class="nav-cta-dot"></span>
+    Open to work
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-sidebar">
+    <div class="hero-sidebar-logo">DD.</div>
+    <nav class="hero-sidebar-nav" aria-label="Section nav">
+      <div class="hs-nav-item"><span class="hs-num">01</span><span class="hs-label active">HOME</span></div>
+      <div class="hs-nav-item"><span class="hs-num">02</span><span class="hs-label">WORK</span></div>
+      <div class="hs-nav-item"><span class="hs-num">03</span><span class="hs-label">ABOUT</span></div>
+      <div class="hs-nav-item"><span class="hs-num">04</span><span class="hs-label">EXPERIENCE</span></div>
+      <div class="hs-nav-item"><span class="hs-num">05</span><span class="hs-label">CONTACT</span></div>
+    </nav>
+    <span class="hero-sidebar-jp">大阪·日本</span>
+  </div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-jp">ユーザー体験のデザイナー</span>
+        Open to opportunities · 2026
+      </div>
+      <h1 class="hero-name">DEBOSHREE<br/><span class="rust">DAS</span>GUPTA</h1>
+      <p class="hero-tagline">a product designer finding my craft</p>
+      <p class="hero-desc">I just wrapped up a year-long design internship where I worked alongside senior designers on real products — building components, running usability tests, prepping assets, and learning what it actually takes to ship good work.</p>
+      <div class="hero-actions">
+        <a href="#work" class="btn-primary">
+          <span class="icon">↗</span>
+          See my work
+        </a>
+        <a href="#contact" class="btn-ghost-link">Or get in touch →</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="hero-scroll-line"></div>
+      <span>Scroll to explore</span>
+    </div>
+  </div>
+  <div class="jp-watermark" style="font-size:clamp(60px,8vw,110px);top:45%;">デザイン<br/>は問題を<br/>解決する</div>
+</section>
+
+<!-- STATS -->
+<div class="stats reveal">
+  <div class="stat-item">
+    <span class="stat-num">1<span> year</span></span>
+    <span class="stat-label">Design Internship</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">4</span>
+    <span class="stat-label">Projects Shipped</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">40<span>+</span></span>
+    <span class="stat-label">Components Built</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-left reveal">
+    <div>
+      <div class="section-tag">About Me</div>
+      <h2 class="about-headline">I taught myself design from scratch — then spent a year learning from people who actually ship.</h2>
+      <div class="about-body">
+        <p>A year ago, I couldn't tell you the difference between auto-layout and absolute positioning. Today, I've built 40+ documented components, run 8 usability testing sessions, and sat shoulder-to-shoulder with engineers shipping production code.</p>
+        <p>My internship wasn't about fetching coffee. I prepped design files for handoff, built interactive prototypes for stakeholder reviews, audited screens for accessibility, and learned how to take feedback without taking it personally.</p>
+        <p>I worked in Japanese-speaking teams — I picked up the language along the way, and while I'm far from native, it taught me to communicate design across language barriers.</p>
+      </div>
+      <div class="about-callouts">
+        <div class="callout">
+          <p class="callout-title">Self-taught foundation</p>
+          <p class="callout-body">Learned design through online courses, tutorials, and a lot of late nights in Figma.</p>
+        </div>
+        <div class="callout">
+          <p class="callout-title">Real-world reps</p>
+          <p class="callout-body">One year working inside a product team. Not hypothetical projects — real users, real feedback.</p>
+        </div>
+        <div class="callout">
+          <p class="callout-title">Japanese working proficiency</p>
+          <p class="callout-body">Can collaborate comfortably in Japanese-speaking teams. Not native, but functional.</p>
+        </div>
+      </div>
+    </div>
+    <div class="about-resume">
+      <a href="#" class="arrow-link">Download Resume <span>→</span></a>
+    </div>
+  </div>
+  <div class="about-right">
+    <div class="about-right-img">
+      <svg viewBox="0 0 600 700" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <rect width="600" height="700" fill="#1A0E08"/>
+        <rect width="600" height="700" fill="rgba(192,80,46,0.06)"/>
+        <ellipse cx="400" cy="200" rx="300" ry="250" fill="rgba(192,80,46,0.08)"/>
+        <!-- Lantern glow -->
+        <ellipse cx="180" cy="300" rx="80" ry="100" fill="rgba(200,155,60,0.12)"/>
+        <ellipse cx="420" cy="450" rx="60" ry="80" fill="rgba(192,80,46,0.1)"/>
+        <!-- Neon lines -->
+        <g stroke="rgba(192,80,46,0.15)" stroke-width="1" fill="none">
+          <line x1="0" y1="200" x2="600" y2="200"/>
+          <line x1="0" y1="400" x2="600" y2="400"/>
+          <line x1="0" y1="600" x2="600" y2="600"/>
+          <line x1="150" y1="0" x2="150" y2="700"/>
+          <line x1="350" y1="0" x2="350" y2="700"/>
+          <line x1="500" y1="0" x2="500" y2="700"/>
+        </g>
+        <!-- Japanese text watermark -->
+        <text x="520" y="100" font-family="serif" font-size="18" fill="rgba(192,80,46,0.2)" writing-mode="tb" letter-spacing="8">大阪のデザイン</text>
+        <text x="480" y="100" font-family="serif" font-size="18" fill="rgba(192,80,46,0.12)" writing-mode="tb" letter-spacing="8">道頓堀</text>
+        <!-- Circular mon -->
+        <g transform="translate(300,350)" stroke="rgba(192,80,46,0.15)" fill="none">
+          <circle cx="0" cy="0" r="80"/>
+          <circle cx="0" cy="0" r="70"/>
+          <path d="M0,-55 Q16,-30 0,-12 Q-16,-30 0,-55Z" fill="rgba(192,80,46,0.15)"/>
+          <path d="M48,32 Q20,12 30,-6 Q42,14 48,32Z" fill="rgba(192,80,46,0.15)"/>
+          <path d="M-48,32 Q-20,12 -30,-6 Q-42,14 -48,32Z" fill="rgba(192,80,46,0.15)"/>
+        </g>
+      </svg>
+    </div>
+    <div class="jp-watermark" style="right:20px;font-size:clamp(40px,5vw,70px);">意味の<br/>ある体験</div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <div class="work-header reveal">
+    <div class="section-tag">Selected Case Studies — 04</div>
+    <div class="work-title-row">
+      <h2 class="work-headline">Four projects,<br/><em style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--rust)">one internship:</em> what I built &amp; learned.</h2>
+      <p class="work-intro">These aren't hypothetical portfolio pieces — they're real work I shipped (or helped ship) during my internship. Each one taught me something I couldn't have learned from a tutorial.</p>
+    </div>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card reveal">
+      <div class="project-card-bg dark"></div>
+      <div class="project-date"><span class="project-date-line"></span>01 · 2025</div>
+      <div class="project-tags">
+        <span class="project-tag">Design System</span>
+        <span class="project-tag">Figma</span>
+        <span class="project-tag">Internship</span>
+      </div>
+      <h3 class="project-name">Component Library</h3>
+      <p class="project-desc">Supporting the build-out of a design system — buttons, inputs, modals, and a whole lot of auto-layout</p>
+      <div class="project-arrow">→</div>
+    </div>
+    <div class="project-card reveal reveal-delay-1">
+      <div class="project-card-bg rust"></div>
+      <div class="project-date"><span class="project-date-line"></span>02 · 2025</div>
+      <div class="project-tags">
+        <span class="project-tag">Internship Project</span>
+        <span class="project-tag">UX Design</span>
+      </div>
+      <h3 class="project-name">Onboarding Flow</h3>
+      <p class="project-desc">Redesigning the user onboarding experience to reduce drop-off and improve first-session activation</p>
+      <div class="project-arrow">→</div>
+    </div>
+    <div class="project-card reveal reveal-delay-2">
+      <div class="project-card-bg blue"></div>
+      <div class="project-date"><span class="project-date-line"></span>03 · 2024</div>
+      <div class="project-tags">
+        <span class="project-tag">UI Design</span>
+        <span class="project-tag">B2B</span>
+      </div>
+      <h3 class="project-name">Dashboard Widgets</h3>
+      <p class="project-desc">Designing and prototyping a set of data widgets for a B2B analytics dashboard</p>
+      <div class="project-arrow">→</div>
+    </div>
+    <div class="project-card reveal reveal-delay-3">
+      <div class="project-card-bg slate"></div>
+      <div class="project-date"><span class="project-date-line"></span>04 · 2024</div>
+      <div class="project-tags">
+        <span class="project-tag">Accessibility</span>
+        <span class="project-tag">Audit</span>
+      </div>
+      <h3 class="project-name">Accessibility Audit</h3>
+      <p class="project-desc">Running contrast checks, focus states, and screen-reader tests across the product</p>
+      <div class="project-arrow">→</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span class="marquee-item">シンプルさは、究極の洗練である。</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">Simplicity is the ultimate sophistication.</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">UX Design</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">人を惹きつける体験を、デザインする。</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">Localization</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">Japanese Working Proficiency</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">Atlanta, GA · Open to Relocation</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">シンプルさは、究極の洗練である。</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">Simplicity is the ultimate sophistication.</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">UX Design</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">人を惹きつける体験を、デザインする。</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">Localization</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">Japanese Working Proficiency</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">Atlanta, GA · Open to Relocation</span><span class="marquee-sep">·</span>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="section-tag reveal">Kind Words</div>
+  <h2 class="work-headline reveal" style="margin-top:12px;">People I've learned from.</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card featured reveal">
+      <div>
+        <div class="t-quote">"</div>
+        <p class="t-text">Most designers hand off and disappear. Deboshree sat with me during implementation, tweaked spacing in real-time, and actually cared whether what shipped matched what she designed. That's rare.</p>
+      </div>
+      <div class="t-person">
+        <div class="t-person-row">
+          <div class="t-avatar">R</div>
+          <div>
+            <p class="t-name">Raj Patel</p>
+            <p class="t-role">Frontend Engineer — sprint collaborator</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal reveal-delay-1">
+      <div class="t-quote">"</div>
+      <p class="t-text">Deboshree didn't just take notes and prep assets — she asked why every decision was made. That kind of curiosity is rare in an intern. By month three, I trusted her to run usability sessions on her own.</p>
+      <div class="t-person" style="margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,.08)">
+        <div class="t-person-row">
+          <div class="t-avatar">C</div>
+          <div>
+            <p class="t-name">Clara Mendes</p>
+            <p class="t-role">Senior Product Designer — internship mentor</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card blue reveal reveal-delay-2">
+      <div class="t-quote">"</div>
+      <p class="t-text">She turned our chaotic Figma file into something the whole team could actually use. Her component documentation was cleaner than what I've seen from designers with three years of experience.</p>
+      <div class="t-person" style="margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,.08)">
+        <div class="t-person-row">
+          <div class="t-avatar">J</div>
+          <div>
+            <p class="t-name">James Okonkwo</p>
+            <p class="t-role">Design Lead — internship supervisor</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal" style="grid-column:2">
+      <div class="t-quote">"</div>
+      <p class="t-text">We've had six design interns in two years. Deboshree is the only one I'd hire without hesitation. Her accessibility audit alone showed more initiative than most candidates bring to a full interview loop.</p>
+      <div class="t-person" style="margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,.08)">
+        <div class="t-person-row">
+          <div class="t-avatar">N</div>
+          <div>
+            <p class="t-name">Nina Bergström</p>
+            <p class="t-role">Head of Design — internship host</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills" id="skills">
+  <div class="section-tag reveal">What I've Learned</div>
+  <h2 class="work-headline reveal" style="margin-top:12px;">Skills picked up<br/><em style="font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(255,255,255,.4)">during a year of real work.</em></h2>
+  <p class="reveal" style="font-size:13px;font-weight:300;color:rgba(255,255,255,.35);max-width:560px;margin-top:12px;line-height:1.7;">Here's what a year of shipping, collaborating, and occasionally messing up taught me. Not claiming mastery — just honest, hands-on experience.</p>
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <div class="skill-icon">🔍</div>
+      <p class="skill-name">User Research</p>
+      <p class="skill-desc">Ran usability tests, synthesized interview notes into actionable insights, and helped prepare research decks for stakeholder presentations.</p>
+    </div>
+    <div class="skill-card reveal reveal-delay-1">
+      <div class="skill-icon">⬜</div>
+      <p class="skill-name">Wireframing & Prototyping</p>
+      <p class="skill-desc">Created low-fidelity wireframes and interactive prototypes in Figma — from paper sketches to clickable flows for user testing sessions.</p>
+    </div>
+    <div class="skill-card reveal reveal-delay-2">
+      <div class="skill-icon">◈</div>
+      <p class="skill-name">Design Systems</p>
+      <p class="skill-desc">Built and documented reusable components with auto-layout and variants. Learned how token-based theming works and why consistency matters at scale.</p>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">🎨</div>
+      <p class="skill-name">Visual & UI Design</p>
+      <p class="skill-desc">Translated wireframes into polished high-fidelity screens. Paid attention to typography, spacing, color, and the details that make an interface feel intentional.</p>
+    </div>
+    <div class="skill-card reveal reveal-delay-1">
+      <div class="skill-icon">👥</div>
+      <p class="skill-name">Cross-functional Collaboration</p>
+      <p class="skill-desc">Sat in sprint planning, worked alongside engineers during implementation, and learned how to communicate design decisions to PMs and stakeholders.</p>
+    </div>
+    <div class="skill-card reveal reveal-delay-2">
+      <div class="skill-icon">⊕</div>
+      <p class="skill-name">Accessibility Awareness</p>
+      <p class="skill-desc">Audited interfaces for WCAG compliance, flagged contrast and focus-state issues, and learned why designing for everyone isn't optional — it's the baseline.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<div class="tools reveal">
+  <p class="tools-label">/ Tools I Use</p>
+  <div class="tools-list">
+    <div class="tool-pill"><span class="tool-dot"></span>Figma · Advanced</div>
+    <div class="tool-pill"><span class="tool-dot"></span>Framer · Learning</div>
+    <div class="tool-pill"><span class="tool-dot"></span>Notion · Daily driver</div>
+    <div class="tool-pill"><span class="tool-dot"></span>Maze · Usability testing</div>
+    <div class="tool-pill"><span class="tool-dot"></span>Whimsical · Wireframes</div>
+    <div class="tool-pill"><span class="tool-dot"></span>Linear · Project tracking</div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-bg"></div>
+  <div class="contact-content reveal">
+    <div class="contact-tag"><span class="nav-cta-dot"></span> Let's work together</div>
+    <h2 class="contact-headline">Looking for a team<br/><em>that values craft and curiosity.</em></h2>
+    <p class="contact-desc">I'm actively looking for a junior product design role. If your team needs someone who ships carefully, takes feedback well, and genuinely cares about the details — let's talk.</p>
+    <div class="contact-actions">
+      <a href="mailto:hello@deboshree.design" class="btn-primary">
+        <span class="icon">✉</span>
+        Say Hello
+      </a>
+      <a href="#" class="btn-ghost-link">Download my resume →</a>
+    </div>
+  </div>
+  <div class="contact-bar">
+    <div class="contact-col">
+      <span class="contact-col-label">Email</span>
+      <span class="contact-col-val">hello@deboshree.design</span>
+    </div>
+    <div class="contact-col">
+      <span class="contact-col-label">Location</span>
+      <span class="contact-col-val">Atlanta, GA · Open to remote &amp; relocation</span>
+    </div>
+    <div class="contact-col">
+      <span class="contact-col-label">Availability</span>
+      <span class="contact-col-val">Immediate</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <p class="footer-brand-name">Deboshree Dasgupta</p>
+      <p class="footer-brand-desc">Product designer. One year in, a whole career ahead. Actively looking for a junior product design role where I can keep learning, keep shipping, and keep getting better.</p>
+    </div>
+    <div>
+      <p class="footer-col-title">Work</p>
+      <a href="#work" class="footer-link">Case studies</a>
+      <a href="#" class="footer-link">Side projects</a>
+      <a href="#" class="footer-link">Resume (PDF)</a>
+    </div>
+    <div>
+      <p class="footer-col-title">About</p>
+      <a href="#about" class="footer-link">My story</a>
+      <a href="#skills" class="footer-link">Skills &amp; tools</a>
+      <a href="#contact" class="footer-link">Contact</a>
+    </div>
+    <div>
+      <p class="footer-col-title">Elsewhere</p>
+      <a href="#" class="footer-link">LinkedIn</a>
+      <a href="#" class="footer-link">Read.cv</a>
+      <a href="#" class="footer-link">Dribbble</a>
+      <a href="#" class="footer-link">GitHub</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Deboshree Dasgupta</span>
+    <span class="footer-made">Set in Cormorant &amp; Inter · <span>Built with care, not a template</span></span>
+    <div class="footer-socials">
+      <a href="#" class="footer-social">in</a>
+      <a href="#" class="footer-social">dr</a>
+      <a href="#" class="footer-social">gh</a>
+      <a href="#" class="footer-social">x</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')});
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
