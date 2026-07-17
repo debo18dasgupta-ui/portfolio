@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case File 01 — About My Path</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #EAE1CB;
+    --paper-light: #F4EEDF;
+    --paper-deep: #DED2AF;
+    --ink: #211D17;
+    --ink-soft: #514A3D;
+    --kraft: #A9793E;
+    --kraft-dark: #7C5A2E;
+    --red: #A23A2B;
+    --red-deep: #7E2A1F;
+    --navy: #34495C;
+    --cover: #15130E;
+    --cover-soft: #23201A;
+    --line: rgba(33,29,23,0.18);
+    --line-dark: rgba(234,225,203,0.16);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--red);color:var(--paper-light);}
+
+  /* paper grain */
+  .grain{
+    position:fixed;inset:0;pointer-events:none;z-index:5;opacity:0.05;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--red);
+    display:flex;align-items:center;gap:10px;
+    font-weight:500;
+  }
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--red);display:inline-block;}
+
+  .stamp{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    border:1.5px solid currentColor;
+    border-radius:3px;
+    padding:4px 9px;
+    display:inline-block;
+    transform:rotate(-3deg);
+    font-weight:600;
+  }
+
+  section{
+    position:relative;
+    padding:100px 8vw;
+    border-bottom:1px solid var(--line);
+  }
+  /* torn-edge divider */
+  section:not(:first-child)::before{
+    content:"";
+    position:absolute;top:-1px;left:0;right:0;height:10px;
+    background-image:linear-gradient(135deg, var(--paper) 50%, transparent 50%),
+                      linear-gradient(45deg, var(--paper) 50%, transparent 50%);
+    background-size:16px 20px;
+    background-position:0 0;
+    background-repeat:repeat-x;
+  }
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    line-height:1.05;
+  }
+  .fold{
+    display:flex;justify-content:space-between;align-items:flex-start;gap:60px;
+    max-width:1400px;margin:0 auto;
+  }
+
+  /* ---------- ARTICLE / PROSE SYSTEM ---------- */
+  .article{
+    max-width:700px;margin:0 auto;
+  }
+  .article .kicker{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--kraft-dark);text-transform:uppercase;margin-bottom:10px;}
+  .article h3.role-title{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:26px;color:var(--red-deep);margin-bottom:22px;}
+  .article p{font-size:16.5px;line-height:1.8;color:var(--ink-soft);margin-bottom:18px;}
+  .article p b{color:var(--ink);font-weight:600;}
+  .drop p:first-of-type::first-letter{
+    font-family:'Fraunces',serif;font-size:64px;font-weight:600;float:left;line-height:0.8;
+    padding:6px 8px 0 0;color:var(--red);
+  }
+  .pullquote{
+    margin:36px 0;padding:22px 28px;border-left:2px solid var(--red);
+    background:var(--paper-light);border-radius:0 6px 6px 0;
+  }
+  .pullquote p{font-family:'Fraunces',serif;font-style:italic;font-size:20px;color:var(--ink);line-height:1.5;margin:0;}
+  .evidence-list{list-style:none;margin:22px 0;padding:0;display:flex;flex-direction:column;gap:10px;}
+  .evidence-list li{
+    display:flex;align-items:center;gap:12px;font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink-soft);
+  }
+  .evidence-list li::before{
+    content:"";width:16px;height:16px;border:1.5px solid var(--red);border-radius:3px;flex-shrink:0;
+  }
+  .closer-line{
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--red-deep);letter-spacing:.03em;
+    border-top:1px dashed var(--line);padding-top:16px;margin-top:8px;
+  }
+  .role-divider{
+    display:flex;align-items:center;gap:16px;max-width:700px;margin:0 auto 40px;
+  }
+  .role-divider .rn{
+    font-family:'Fraunces',serif;font-size:38px;color:transparent;-webkit-text-stroke:1.3px var(--kraft);flex-shrink:0;
+  }
+  .role-divider .rl{flex:1;height:1px;background:var(--line);}
+  .role-divider .rt{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap;}
+
+
+  /* ---------- NAV TABS ---------- */
+  .tabnav{
+    position:fixed;right:0;top:50%;transform:translateY(-50%);
+    z-index:20;display:flex;flex-direction:column;gap:2px;
+  }
+  .tabnav a{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;letter-spacing:0.1em;text-transform:uppercase;
+    background:var(--paper-deep);
+    color:var(--ink-soft);
+    padding:11px 16px 11px 20px;
+    border:1px solid var(--line);
+    border-right:none;
+    text-decoration:none;
+    transform:translateX(46px);
+    transition:transform .35s cubic-bezier(.22,.9,.32,1), background .25s, color .25s;
+    white-space:nowrap;
+    border-radius:4px 0 0 4px;
+  }
+  .tabnav a span{color:var(--red);margin-right:8px;}
+  .tabnav a:hover, .tabnav a.active{
+    transform:translateX(0);
+    background:var(--red);
+    color:var(--paper-light);
+  }
+  .tabnav a:hover span, .tabnav a.active span{color:var(--paper-light);}
+  @media(max-width:900px){ .tabnav{display:none;} }
+
+  /* ---------- SECTION 01 : COVER ---------- */
+  .cover{
+    min-height:100vh;
+    display:flex;flex-direction:column;justify-content:center;
+    padding-top:120px;
+  }
+  .cover .folder-tab{
+    position:absolute;top:0;left:8vw;
+    background:var(--kraft);
+    color:var(--paper-light);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;letter-spacing:0.12em;text-transform:uppercase;
+    padding:8px 18px;
+    border-radius:0 0 6px 6px;
+    font-weight:600;
+  }
+  .cover-grid{display:grid;grid-template-columns:1.4fr 0.9fr;gap:70px;align-items:center;max-width:1400px;margin:0 auto;width:100%;}
+  .cover h1{
+    font-size:clamp(38px,5.4vw,74px);
+    margin-top:24px;
+    letter-spacing:-0.01em;
+  }
+  .cover h1 em{
+    font-style:italic;color:var(--red);font-weight:500;
+  }
+  .cover .rule{width:60px;height:2px;background:var(--ink);margin:26px 0 22px;}
+  .cover p{font-size:17px;line-height:1.65;color:var(--ink-soft);max-width:460px;}
+  .cover p + p{margin-top:2px;}
+
+  .evidence-card{
+    background:var(--paper-light);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:34px;
+    position:relative;
+    box-shadow:0 18px 40px -22px rgba(33,29,23,0.35);
+  }
+  .evidence-card::after{
+    content:"";position:absolute;top:-9px;left:50%;transform:translateX(-50%) rotate(45deg);
+    width:18px;height:18px;background:var(--red);border-radius:50%;
+    box-shadow:0 3px 6px rgba(0,0,0,0.25);
+  }
+  .evidence-card .tag{
+    font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--ink-soft);letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;
+  }
+  .evidence-card .field{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px dashed var(--line);font-size:13.5px;}
+  .evidence-card .field:last-child{border-bottom:none;}
+  .evidence-card .field b{font-weight:600;color:var(--ink);}
+  .evidence-card .field span{color:var(--ink-soft);}
+
+  /* ---------- SECTION 02 : QUESTION ---------- */
+  .question h2{font-size:clamp(28px,3.6vw,44px);margin-top:20px;max-width:640px;}
+  .question .big{
+    font-size:clamp(34px,4.4vw,58px);
+    font-style:italic;color:var(--red);margin-top:6px;font-weight:500;
+  }
+  .trail{
+    margin-top:70px;
+    display:flex;align-items:flex-start;gap:0;position:relative;
+    max-width:1400px;margin-left:auto;margin-right:auto;
+  }
+  .trail-step{flex:1;text-align:left;position:relative;padding-right:26px;}
+  .trail-badge{
+    width:58px;height:58px;border-radius:50%;
+    background:var(--paper-light);border:1.5px solid var(--ink);
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:18px;
+    font-family:'IBM Plex Mono',monospace;
+  }
+  .trail-badge svg{width:24px;height:24px;stroke:var(--ink);}
+  .trail-num{
+    position:absolute;top:0;right:26px;
+    font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--line);
+  }
+  .trail-step h4{font-family:'Fraunces',serif;font-weight:600;font-size:18px;margin-bottom:8px;}
+  .trail-step p{font-size:13.5px;color:var(--ink-soft);line-height:1.55;max-width:220px;}
+  .trail-arrow{position:absolute;top:29px;right:-2px;color:var(--red);font-size:18px;}
+  .trail-step:last-child .trail-arrow{display:none;}
+
+  .quote-strip{
+    margin-top:64px;padding-top:30px;border-top:1px solid var(--line);
+    display:flex;gap:16px;align-items:flex-start;max-width:1400px;margin-left:auto;margin-right:auto;
+  }
+  .quote-strip .mark{font-family:'Fraunces',serif;font-size:44px;color:var(--red);line-height:0.6;font-style:italic;}
+  .quote-strip p{font-family:'Fraunces',serif;font-style:italic;font-size:19px;color:var(--ink);}
+
+  /* ---------- SECTION 03 : CHAPTERS ---------- */
+  .chapters-grid{
+    margin-top:56px;display:grid;grid-template-columns:repeat(3,1fr);gap:26px;max-width:1400px;margin-left:auto;margin-right:auto;
+  }
+  .case-folder{
+    background:var(--paper-light);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:30px 26px 26px;
+    position:relative;
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .case-folder:hover{transform:translateY(-6px);box-shadow:0 22px 44px -26px rgba(33,29,23,0.4);}
+  .case-folder .tabtop{
+    position:absolute;top:-13px;left:26px;
+    background:var(--ink);color:var(--paper-light);
+    font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;
+    padding:5px 12px;border-radius:3px;
+  }
+  .case-folder .num{
+    font-family:'Fraunces',serif;font-size:52px;color:var(--paper-deep);
+    -webkit-text-stroke:1.5px var(--kraft);
+    color:transparent;
+    line-height:1;margin-top:8px;
+  }
+  .case-folder h3{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.08em;margin-top:14px;color:var(--ink-soft);}
+  .case-folder h4{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:21px;margin-top:6px;color:var(--red-deep);}
+  .case-folder .rule-sm{width:32px;height:2px;background:var(--line);margin:14px 0;}
+  .case-folder p{font-size:14px;color:var(--ink-soft);line-height:1.6;min-height:66px;}
+  .tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;}
+  .tag-chip{
+    font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.04em;
+    border:1px solid var(--line);border-radius:20px;padding:6px 12px;color:var(--ink-soft);
+    display:flex;align-items:center;gap:6px;
+  }
+  .tag-chip::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--red);}
+
+  /* ---------- SECTION 04 : CONNECTING ---------- */
+  .connect-wrap{display:grid;grid-template-columns:0.85fr 1.15fr;gap:60px;align-items:center;max-width:1400px;margin:56px auto 0;}
+  .connect-copy h2{font-size:clamp(30px,3.6vw,46px);}
+  .connect-copy h2 em{color:var(--red);font-style:italic;font-weight:500;}
+  .connect-copy p{margin-top:20px;color:var(--ink-soft);font-size:15.5px;line-height:1.7;max-width:400px;}
+  .caption-note{
+    margin-top:26px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--red-deep);
+    padding:12px 14px;border-left:2px solid var(--red);background:rgba(162,58,43,0.06);
+  }
+  .board{
+    background:var(--paper-deep);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:34px 24px;
+    position:relative;
+    min-height:420px;
+  }
+  .board svg{position:absolute;inset:0;width:100%;height:100%;}
+  .board-node{
+    position:absolute;width:118px;text-align:center;
+  }
+  .board-node .pin{
+    width:44px;height:44px;border-radius:50%;background:var(--paper-light);
+    border:1.5px solid var(--ink);display:flex;align-items:center;justify-content:center;margin:0 auto 8px;
+    box-shadow:0 6px 14px -6px rgba(0,0,0,.3);
+  }
+  .board-node .pin svg{position:static;width:20px;height:20px;stroke:var(--ink);}
+  .board-node span{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--ink-soft);line-height:1.4;display:block;}
+  .seal{
+    position:absolute;width:78px;height:78px;border-radius:50%;
+    background:var(--red);color:var(--paper-light);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:22px;
+    box-shadow:0 10px 24px -8px rgba(122,42,31,.6);
+    border:2px solid var(--paper-light);
+  }
+  @media(max-width:900px){
+    .connect-wrap{grid-template-columns:1fr;}
+    .board{min-height:520px;}
+  }
+
+  /* ---------- SECTION 05 : REFLECTION ---------- */
+  .reflect{
+    background:var(--cover);color:var(--paper-light);
+    border-bottom:none;
+  }
+  .reflect .grid{display:grid;grid-template-columns:0.95fr 1.15fr;gap:56px;max-width:1400px;margin:56px auto 0;}
+  .reflect .eyebrow{color:#D98C74;}
+  .reflect .eyebrow::before{background:#D98C74;}
+  .reflect h2{font-size:clamp(30px,4vw,50px);color:var(--paper-light);}
+  .reflect h2 em{color:#D98C74;font-style:italic;font-weight:500;}
+  .reflect p{color:rgba(244,238,223,0.72);margin-top:20px;font-size:15.5px;line-height:1.75;max-width:440px;}
+  .reflect .foundation{
+    margin-top:30px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.05em;
+    color:var(--paper-light);border-top:1px solid var(--line-dark);padding-top:18px;
+  }
+  .reflect .foundation b{color:#D98C74;}
+
+  .panel{
+    background:var(--cover-soft);border:1px solid var(--line-dark);border-radius:8px;padding:38px 34px;position:relative;
+  }
+  .panel-title{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#D98C74;margin-bottom:26px;}
+  .bring-item{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line-dark);}
+  .bring-item:last-of-type{border-bottom:none;}
+  .bring-item .ic{
+    width:38px;height:38px;border-radius:50%;border:1px solid rgba(244,238,223,0.3);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .bring-item .ic svg{width:17px;height:17px;stroke:var(--paper-light);}
+  .bring-item h5{font-family:'Fraunces',serif;font-weight:600;font-size:16.5px;}
+  .bring-item p{font-size:13px;color:rgba(244,238,223,0.6);margin-top:4px;line-height:1.5;}
+  .closing-line{
+    margin-top:24px;font-family:'Fraunces',serif;font-style:italic;font-size:15.5px;color:#D98C74;line-height:1.55;
+  }
+  .case-closed{
+    position:absolute;bottom:-14px;right:26px;
+    transform:rotate(-8deg);
+    border:2px solid var(--red);color:var(--red);
+    font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:11px;letter-spacing:.1em;
+    padding:6px 12px;border-radius:4px;background:rgba(162,58,43,0.08);
+  }
+  @media(max-width:900px){ .reflect .grid{grid-template-columns:1fr;} }
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease, transform .7s cubic-bezier(.22,.9,.32,1);}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  @media(max-width:900px){
+    section{padding:70px 6vw;}
+    .cover-grid{grid-template-columns:1fr;gap:40px;}
+    .fold{flex-direction:column;gap:26px;}
+    .trail{flex-direction:column;gap:28px;}
+    .trail-step{padding-right:0;}
+    .trail-arrow{display:none;}
+    .chapters-grid{grid-template-columns:1fr;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .reveal{opacity:1;transform:none;transition:none;}
+  }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<nav class="tabnav">
+  <a href="#question"><span>02</span>The Question</a>
+  <a href="#chapters"><span>03</span>Three Chapters</a>
+  <a href="#connect"><span>04</span>Connecting the Dots</a>
+  <a href="#reflect"><span>05</span>Reflection</a>
+</nav>
+
+<!-- SCREEN 01 — COVER -->
+<section class="cover" id="cover">
+  <div class="folder-tab">Case File — 01</div>
+  <div class="cover-grid">
+    <div class="reveal">
+      <div class="eyebrow">About My Path</div>
+      <h1>I Was Practicing UX<br>Before I Knew<br><em>What UX Was.</em></h1>
+      <div class="rule"></div>
+      <p>Before I ever opened Figma, built a wireframe, or learned what information architecture meant, I spent nearly six years working as a Japanese Language Specialist across Amazon, Tech Mahindra, and Cognizant.</p>
+      <p>At first glance, these roles seem unrelated to UX design — one focused on fraud investigation, another on mapping accuracy, another on search quality and data analysis. But looking back, I realize I was developing many of the same skills that later drew me toward UX.</p>
+    </div>
+    <div class="evidence-card reveal">
+      <div class="tag">Subject Profile</div>
+      <div class="field"><b>Name</b><span>Deb Dasgupta</span></div>
+      <div class="field"><b>Based in</b><span>Atlanta, GA</span></div>
+      <div class="field"><b>Prior role</b><span>Japanese Language Specialist</span></div>
+      <div class="field"><b>Duration</b><span>~6 years</span></div>
+      <div class="field"><b>Employers</b><span>Amazon · Tech Mahindra · Cognizant</span></div>
+      <div class="field"><b>Status</b><span style="color:var(--red);font-weight:600;">Open Case</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SCREEN 02 — THE QUESTION -->
+<section class="question" id="question">
+  <div class="fold reveal">
+    <div>
+      <div class="eyebrow">02 — The Question</div>
+      <h2>Every case required answering<br>a simple question:</h2>
+      <div class="big">What is really happening here?</div>
+    </div>
+  </div>
+
+  <div class="trail reveal">
+    <div class="trail-step">
+      <div class="trail-num">01</div>
+      <div class="trail-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="10" cy="10" r="6"/><path d="M20 20l-5.5-5.5"/></svg></div>
+      <h4>Analyze</h4>
+      <p>I analyzed activity, reviewed patterns, and gathered evidence.</p>
+      <div class="trail-arrow">→</div>
+    </div>
+    <div class="trail-step">
+      <div class="trail-num">02</div>
+      <div class="trail-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></svg></div>
+      <h4>Investigate</h4>
+      <p>I looked for patterns, tested assumptions, and dug deeper.</p>
+      <div class="trail-arrow">→</div>
+    </div>
+    <div class="trail-step">
+      <div class="trail-num">03</div>
+      <div class="trail-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="5" y="3" width="14" height="18" rx="1.5"/><path d="M9 8h6M9 12h6M9 16h4"/></svg></div>
+      <h4>Decide</h4>
+      <p>I made decisions based on incomplete information.</p>
+      <div class="trail-arrow">→</div>
+    </div>
+    <div class="trail-step">
+      <div class="trail-num">04</div>
+      <div class="trail-badge"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M5 12.5l4.5 4.5L19 7"/></svg></div>
+      <h4>Act</h4>
+      <p>And I chose the best action with what I had.</p>
+    </div>
+  </div>
+
+  <div class="quote-strip reveal">
+    <span class="mark">&ldquo;</span>
+    <p>The biggest lesson I learned: assumptions can be dangerous. Evidence matters.</p>
+  </div>
+</section>
+
+<!-- SCREEN 03 — THREE CHAPTERS -->
+<section class="chapters" id="chapters">
+  <div class="eyebrow reveal">03 — Three Chapters</div>
+  <p class="reveal" style="max-width:560px;margin-top:16px;color:var(--ink-soft);font-size:15px;line-height:1.6;">Three roles, three different problems. Here's the case file on each — skim the tags, or read the full account below.</p>
+  <div class="chapters-grid">
+    <div class="case-folder reveal">
+      <div class="tabtop">Case Closed</div>
+      <div class="num">01</div>
+      <h3>Amazon Japan</h3>
+      <h4>Fraud Investigation</h4>
+      <div class="rule-sm"></div>
+      <p>Determining whether a buyer or seller was engaging in fraudulent activity.</p>
+      <div class="tag-row">
+        <span class="tag-chip">Patterns</span>
+        <span class="tag-chip">Evidence</span>
+        <span class="tag-chip">Behavior</span>
+        <span class="tag-chip">Decision</span>
+      </div>
+    </div>
+    <div class="case-folder reveal">
+      <div class="tabtop">Case Closed</div>
+      <div class="num">02</div>
+      <h3>Tech Mahindra</h3>
+      <h4>Information Architecture</h4>
+      <div class="rule-sm"></div>
+      <p>Improving the accuracy of map and address data for the Japanese market.</p>
+      <div class="tag-row">
+        <span class="tag-chip">Accuracy</span>
+        <span class="tag-chip">Organization</span>
+        <span class="tag-chip">Navigation</span>
+        <span class="tag-chip">Interpretation</span>
+      </div>
+    </div>
+    <div class="case-folder reveal">
+      <div class="tabtop">Case Closed</div>
+      <div class="num">03</div>
+      <h3>Cognizant</h3>
+      <h4>Understanding Intent</h4>
+      <div class="rule-sm"></div>
+      <p>Analyzing search results to improve quality, relevance, and user experience.</p>
+      <div class="tag-row">
+        <span class="tag-chip">Search Quality</span>
+        <span class="tag-chip">User Intent</span>
+        <span class="tag-chip">Context</span>
+        <span class="tag-chip">Relevance</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROLE DETAIL 01 — AMAZON -->
+<section class="role-detail">
+  <div class="role-divider reveal">
+    <span class="rn">01</span>
+    <span class="rt">Amazon Japan</span>
+    <span class="rl"></span>
+  </div>
+  <div class="article drop reveal">
+    <div class="kicker">Fraud Investigation</div>
+    <h3 class="role-title">Learning to Investigate Human Behavior</h3>
+    <p>As part of Amazon's Transaction Risk Management team, my job was to determine whether a buyer or seller was engaging in fraudulent activity.</p>
+
+    <div class="pullquote"><p>Every case required answering a simple question: what is really happening here?</p></div>
+
+    <p>I analyzed account activity, reviewed patterns, gathered evidence, and made decisions based on incomplete information. Looking back, this wasn't very different from UX research. <b>Both require:</b></p>
+
+    <ul class="evidence-list">
+      <li>Understanding human behavior</li>
+      <li>Identifying patterns</li>
+      <li>Investigating root causes</li>
+      <li>Making informed decisions from limited data</li>
+    </ul>
+
+    <div class="closer-line">The biggest lesson I learned was that assumptions can be dangerous. Evidence matters.</div>
+  </div>
+</section>
+
+<!-- ROLE DETAIL 02 — TECH MAHINDRA -->
+<section class="role-detail">
+  <div class="role-divider reveal">
+    <span class="rn">02</span>
+    <span class="rt">Tech Mahindra</span>
+    <span class="rl"></span>
+  </div>
+  <div class="article drop reveal">
+    <div class="kicker">Information Architecture</div>
+    <h3 class="role-title">Understanding Information Architecture at Scale</h3>
+    <p>At Tech Mahindra, I worked on improving the accuracy of map and address data for the Japanese market.</p>
+    <p>Addresses in Japan are structured very differently from those in many other countries. Ensuring accuracy meant understanding how users search, navigate, and interpret location information.</p>
+
+    <div class="pullquote"><p>Information is only useful when it is organized in a way people can understand.</p></div>
+
+    <p>Today, when I think about navigation systems, content hierarchy, or information architecture, I often find myself drawing on the same mindset.</p>
+  </div>
+</section>
+
+<!-- ROLE DETAIL 03 — COGNIZANT -->
+<section class="role-detail">
+  <div class="role-divider reveal">
+    <span class="rn">03</span>
+    <span class="rt">Cognizant</span>
+    <span class="rl"></span>
+  </div>
+  <div class="article drop reveal">
+    <div class="kicker">Search &amp; User Intent</div>
+    <h3 class="role-title">Understanding Search and User Intent</h3>
+    <p>At Cognizant, I supported Huawei's Petal Search expansion into Japan. My role involved analyzing Japanese-language search results and helping improve search quality and relevance.</p>
+
+    <div class="pullquote"><p>This experience introduced me to a concept that sits at the heart of UX: user intent.</p></div>
+
+    <p>People rarely search for exactly what they mean — they search with goals, expectations, assumptions, and context. Understanding what users are trying to accomplish, and helping them get there, became a recurring theme throughout my work.</p>
+  </div>
+</section>
+
+<!-- SCREEN 04 — CONNECTING THE DOTS -->
+<section class="connect" id="connect">
+  <div class="connect-wrap">
+    <div class="connect-copy reveal">
+      <div class="eyebrow">04 — Connecting the Dots</div>
+      <h2>Different problems.<br>Same foundation.<br><em>Always people.</em></h2>
+      <p>When I eventually discovered UX design, something felt familiar. The tools were different. The deliverables were different. But the underlying skills were surprisingly similar.</p>
+      <p>Across fraud investigation, mapping systems, and search quality analysis, I had spent years:</p>
+      <div class="caption-note">I just wasn't calling it UX yet.</div>
+    </div>
+
+    <div class="board reveal">
+      <svg viewBox="0 0 620 460" preserveAspectRatio="xMidYMid meet">
+        <line x1="70" y1="50" x2="480" y2="220" stroke="#A23A2B" stroke-width="1.4" stroke-dasharray="5 6" opacity="0.75"/>
+        <line x1="230" y1="30" x2="480" y2="220" stroke="#A23A2B" stroke-width="1.4" stroke-dasharray="5 6" opacity="0.75"/>
+        <line x1="60" y1="190" x2="480" y2="220" stroke="#A23A2B" stroke-width="1.4" stroke-dasharray="5 6" opacity="0.75"/>
+        <line x1="60" y1="330" x2="480" y2="220" stroke="#A23A2B" stroke-width="1.4" stroke-dasharray="5 6" opacity="0.75"/>
+        <line x1="230" y1="410" x2="480" y2="220" stroke="#A23A2B" stroke-width="1.4" stroke-dasharray="5 6" opacity="0.75"/>
+      </svg>
+
+      <div class="board-node" style="top:2%; left:0%;">
+        <div class="pin"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="10" cy="10" r="6"/><path d="M20 20l-5.5-5.5"/></svg></div>
+        <span>Solving problems</span>
+      </div>
+      <div class="board-node" style="top:-2%; left:32%;">
+        <div class="pin"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c1.5-4 4-6 7-6s5.5 2 7 6"/></svg></div>
+        <span>Analyzing user behavior</span>
+      </div>
+      <div class="board-node" style="top:36%; left:-2%;">
+        <div class="pin"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></svg></div>
+        <span>Organizing information</span>
+      </div>
+      <div class="board-node" style="top:66%; left:-2%;">
+        <div class="pin"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="9" cy="9" r="4"/><path d="M17 17l-3.5-3.5" /><circle cx="9" cy="9" r="1.4" fill="currentColor" stroke="none"/></svg></div>
+        <span>Understanding intent</span>
+      </div>
+      <div class="board-node" style="top:88%; left:32%;">
+        <div class="pin"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M4 19V10M12 19V5M20 19v-6"/></svg></div>
+        <span>Working with data</span>
+      </div>
+      <div class="seal" style="top:44%; left:76%;">UX</div>
+      <div class="board-node" style="top:70%; left:70%;">
+        <span style="margin-top:6px;">Improving experiences</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCREEN 05 — REFLECTION -->
+<section class="reflect" id="reflect">
+  <div class="grid">
+    <div class="reveal">
+      <div class="eyebrow">05 — Reflection</div>
+      <h2>I wasn't changing careers.<br><em>I was changing tools.</em></h2>
+      <p>My path into design wasn't traditional. I didn't start with a design degree — I started with language, data, and problem-solving.</p>
+      <p>That background continues to influence how I approach design today, combining analytical thinking, cultural understanding, and empathy to create experiences that are both useful and intuitive.</p>
+      <div class="foundation"><b>+</b> Curiosity. Empathy. Logic. Clarity. That's my foundation.</div>
+    </div>
+
+    <div class="panel reveal">
+      <div class="panel-title">What I Bring Into UX Today</div>
+
+      <div class="bring-item">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="10" cy="10" r="6"/><path d="M20 20l-5.5-5.5"/></svg></div>
+        <div>
+          <h5>Analytical Thinking</h5>
+          <p>Asking the right questions and digging for the truth.</p>
+        </div>
+      </div>
+      <div class="bring-item">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 20s-7-4.6-9.3-9.1C1.4 7.6 3 4.5 6.2 4c2-.3 3.7.8 4.8 2.4C12.1 4.8 13.8 3.7 15.8 4c3.2.5 4.8 3.6 3.5 6.9C17 15.4 12 20 12 20z"/></svg></div>
+        <div>
+          <h5>Cultural Understanding</h5>
+          <p>Empathy shaped by language, context, and people.</p>
+        </div>
+      </div>
+      <div class="bring-item">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M4 20l3.6-1 10-10a2 2 0 000-2.8L16 4.6a2 2 0 00-2.8 0l-10 10L2 18l2 2z"/><path d="M13 6.5L17.5 11"/></svg></div>
+        <div>
+          <h5>Design Mindset</h5>
+          <p>Turning complexity into clarity and useful experiences.</p>
+        </div>
+      </div>
+
+      <div class="closing-line">And perhaps that's why UX felt like the right next chapter.</div>
+      <div class="case-closed">Case Closed</div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.15});
+  revealEls.forEach(el=>io.observe(el));
+
+  const links = document.querySelectorAll('.tabnav a');
+  const sections = ['question','chapters','connect','reflect'].map(id=>document.getElementById(id));
+  const navIO = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        links.forEach(l=>l.classList.remove('active'));
+        const idx = sections.indexOf(e.target);
+        if(links[idx]) links[idx].classList.add('active');
+      }
+    });
+  }, {threshold:0.4});
+  sections.forEach(s=> s && navIO.observe(s));
+</script>
+</body>
+</html>
